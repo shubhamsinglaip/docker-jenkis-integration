@@ -1,4 +1,25 @@
-FROM openjdk:8-jre-alpine3.9
-EXPOSE 8080
-ADD target/docker-jenkins-integration.jar docker-jenkins-integration.jar
-ENTRYPOINT ["java","-jar","/docker-jenkins-integration.jar"]
+FROM ubuntu:20.04
+
+
+
+RUN apt update && apt install -y nginx && service nginx start
+
+
+
+WORKDIR /ujwal
+
+
+
+ADD index.html .
+
+
+
+RUN cat index.html > /var/www/html/index.nginx-debian.html
+
+
+
+CMD ["bash"]
+
+
+
+EXPOSE 8082
